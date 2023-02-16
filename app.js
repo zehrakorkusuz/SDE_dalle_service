@@ -26,8 +26,12 @@ app.post("/image", async (req, res) => {
       n: 1,
       size: "1024x1024",
     });
+    
     // Send back image url
-    res.send(response.data.data[0].url);
+    res.send({
+      success: true,
+      url: response.data.data[0].url
+    });
   });
 
 // Start the server
