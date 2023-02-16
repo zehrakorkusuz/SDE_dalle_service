@@ -31,7 +31,7 @@ app.post("/image", async (req, res) => {
   });
 
 // Start the server
-const port = 8080;
+const port = process.env.PORT;
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });
