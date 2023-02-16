@@ -15,6 +15,10 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
+app.get("/", (req, res) => {
+  res.send({online: true});
+})
+
 // Set up the DALL-E endpoint
 app.post("/image", async (req, res) => {
   try {
