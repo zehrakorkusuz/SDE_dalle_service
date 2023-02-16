@@ -15,23 +15,26 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
+// log the requets I get
 function requestLogger(req, res, next) {
   console.log(`requested ${req.method} ${req.url}`);
   next();
 }
-
 app.use(requestLogger);
 
+// basic api to tell that we're online
 app.get("/", (req, res) => {
   res.send({online: true});
 })
 
 // Set up the DALL-E endpoint
 app.post("/image", async (req, res) => {
+  // general error handling
   try {
     // Get the prompt from the request
     const { prompt } = req.body;
 
+    // no body given
     if (prompt == null) {
       return res.status(400).send({ error: "Give us a body with field 'prompt'" });
     }
