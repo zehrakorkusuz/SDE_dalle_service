@@ -15,6 +15,13 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
+function requestLogger(req, res, next) {
+  console.log(`requested ${req.method} ${req.url}`);
+  next();
+}
+
+app.use(requestLogger);
+
 app.get("/", (req, res) => {
   res.send({online: true});
 })
