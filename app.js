@@ -24,8 +24,8 @@ app.use(requestLogger);
 
 // basic api to tell that we're online
 app.get("/", (req, res) => {
-  res.send({online: true});
-})
+  res.send({ online: true });
+});
 
 // Set up the DALL-E endpoint
 app.post("/image", async (req, res) => {
@@ -36,7 +36,9 @@ app.post("/image", async (req, res) => {
 
     // no body given
     if (prompt == null) {
-      return res.status(400).send({ error: "Give us a body with field 'prompt'" });
+      return res
+        .status(400)
+        .send({ error: "Give us a body with field 'prompt'" });
     }
 
     // Generate image from prompt
@@ -59,5 +61,5 @@ app.post("/image", async (req, res) => {
 // Start the server
 const port = process.env.PORT;
 app.listen(port, () => {
-  console.log(`Server listening on port ${port}`);
+  console.log(`Listening on port http://localhost:${port}`);
 });
