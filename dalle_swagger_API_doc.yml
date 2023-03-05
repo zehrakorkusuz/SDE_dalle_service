@@ -1,0 +1,46 @@
+openapi: '3.0.2'
+info:
+  title: Generate Images with DALL-E API
+  version: '1.0'
+servers:
+  - url: https://dalle-service-7x5inv6roa-lz.a.run.app
+paths:
+  /image:
+    post:
+      summary: Generates an image.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                  prompt:
+                    type: string
+      responses:
+        '200':
+          description: An image object.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  url:
+                    type: string
+                    example: https://storage.googleapis.com/sde-storage-bucket/simone__sde.itA_website_that_uses_machine_learning_to_create_blog_posts_and_images.jpeg
+        '401':
+          description: Invalid token
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  error:
+                    type: string
+                    example: Unauthorized
